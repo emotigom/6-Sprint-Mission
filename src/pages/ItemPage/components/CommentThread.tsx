@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getProductComments } from "../../../api/itemApi";
 import styled from "styled-components";
-import EmptyStateImage from "../../../assets/images/ui/empty-comments.svg";
-import SeeMoreIcon from "../../../assets/images/icons/ic_kebab.svg";
+import { ReactComponent as EmptyStateImage } from "../../../assets/images/ui/empty-comments.svg";
+import { ReactComponent as SeeMoreIcon } from "../../../assets/images/icons/ic_kebab.svg";
 // 참고: SVG 이미지 파일을 ReactComponent로 import하는 것을 추천하지만, DefaultProfileImage는 image source로 사용하기 위해 그대로 불러왔어요.
-import DefaultProfileImage from "../../../assets/images/ui/ic_profile.svg";
+// import { ReactComponent as DefaultProfileImage } from "../../../assets/images/ui/ic_profile.svg";
 // import { LineDivider } from "../../../styles/CommonStyles";
 import { formatUpdatedAt } from "../../../utils/dateUtils";
 
@@ -80,12 +80,11 @@ const CommentItem = ({ item }: CommentItemProps) => {
 
         <AuthorProfile>
           <UserProfileImage
-            src={authorInfo.image || DefaultProfileImage} // 등록된 프로필 사진이 없을 경우 기본 프로필 아이콘 사용
-            alt={`${authorInfo.nickname}님의 프로필 사진`}
+            src={typeof Image === "string" ? Image : undefined}
+            alt={`${authorInfo ? authorInfo.nickname : "unknown"}님의 프로필 사진`}
           />
-
           <div>
-            <Username>{authorInfo.nickname}</Username>
+            <Username>{authorInfo ? authorInfo.nickname : "unknown"}</Username>
             <Timestamp>{formattedTimestamp}</Timestamp>
           </div>
         </AuthorProfile>
