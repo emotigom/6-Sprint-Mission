@@ -1,5 +1,5 @@
 export interface Product {
-  createdAt: Date;
+  createdAt: string;
   favoriteCount: number;
   ownerId: number;
   images: string[];

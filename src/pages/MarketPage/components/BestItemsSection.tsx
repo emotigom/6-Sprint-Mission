@@ -76,7 +76,7 @@ const BestItemsSection: React.FC = () => {
 
         <BestItemsCardSection>
           {itemList.map((item: Product) => (
-            <ItemCard product={item} key={`best-item-${item.id}`} />
+            <ItemCard item={item} key={`best-item-${item.id}`} />
           ))}
         </BestItemsCardSection>
       </BestItemsContainer>

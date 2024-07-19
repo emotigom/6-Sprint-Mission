@@ -6,7 +6,6 @@ import ItemProfileSection from "./components/ItemProfileSection";
 import ItemCommentSection from "./components/ItemCommentSection";
 import { ReactComponent as BackIcon } from "../../assets/images/icons/ic_back.svg";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import { Product } from "../../types/productTypes";
 import { useProductDetail } from "../../api/itemApi";
 
 const BackToMarketPageLink = styled(StyledLink)`
@@ -25,7 +24,7 @@ const ItemPage: React.FC = () => {
   const { data: product, error, isLoading } = useProductDetail(productIdNumber);
 
   if (error) {
-    alert(`오류: ${error.message}`);
+    alert(`오류: ${(error as Error).message}`);
   }
 
   if (!productId || !product) return null;
@@ -41,7 +40,6 @@ const ItemPage: React.FC = () => {
 
         <ItemCommentSection productId={productIdNumber} />
 
-        {/* BackToMarketPageLink의 베이스인 StyledLink에 $pill boolean 값을 전달 */}
         <BackToMarketPageLink $pill to="/items">
           목록으로 돌아가기
           <BackIcon />

@@ -123,7 +123,7 @@ const CommentThread: React.FC<CommentThreadProps> = ({ productId }) => {
   }
 
   if (error) {
-    return <div>오류: {error.message}</div>;
+    return <div>오류: {(error as Error).message}</div>;
   }
 
   if (comments && !comments.length) {
@@ -131,7 +131,7 @@ const CommentThread: React.FC<CommentThreadProps> = ({ productId }) => {
   } else {
     return (
       <ThreadContainer>
-        {comments.map((item) => (
+        {comments.map((item: any) => (
           <CommentItem item={item} key={`comment-${item.id}`} />
         ))}
       </ThreadContainer>

@@ -8,6 +8,7 @@ import { useProducts } from "../../../api/itemApi"; // React Query 훅
 import { MarketSectionTitle } from "../MarketStyles";
 import styled from "styled-components";
 import { StyledLink } from "../../../styles/CommonStyles";
+import { Product } from '../../../types/productTypes';
 
 const AllItemsSectionHeader = styled.div`
   display: flex;
@@ -78,6 +79,7 @@ const getPageSize = () => {
   }
 };
 
+
 const AllItemsSection: React.FC = () => {
   const [orderBy, setOrderBy] = useState<ProductSortOption>("recent");
   const [page, setPage] = useState(1);
@@ -131,16 +133,17 @@ const AllItemsSection: React.FC = () => {
         </AllItemsSectionHeader>
 
         <AllItemsCardSection>
-          {itemList?.map((item) => (
-            <ItemCard product={item} key={item.id} />
+          {itemList?.map((item: Product) => (
+            <ItemCard key={item.id} item={item} />
           ))}
+          
         </AllItemsCardSection>
 
         {itemList && (
           <PaginationBarWrapper>
             <PaginationBar
-              currentPage={page}
-              totalPages={totalPageNum}
+              totalPageNum={totalPageNum}
+              activePageNum={page}
               onPageChange={onPageChange}
             />
           </PaginationBarWrapper>
